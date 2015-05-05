@@ -65,5 +65,15 @@ namespace Cdiscount.OpenApi.ProxyClient
 
             return result;
         }
+
+        /// <summary>
+        /// Retrieve a cart with all its details
+        /// </summary>
+        /// <param name="request">Cart to retrieve</param>
+        /// <returns>Cart content</returns>
+        public GetCartResponse GetCart(GetCartRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
