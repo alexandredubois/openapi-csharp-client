@@ -48,5 +48,10 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Response
         /// Cart update date
         /// </summary>
         public DateTime UpdateDate { get; set; }
+
+        /// <summary>
+        /// Error type
+        /// </summary>
+        public string ErrorType { get; set; }
     }
 }

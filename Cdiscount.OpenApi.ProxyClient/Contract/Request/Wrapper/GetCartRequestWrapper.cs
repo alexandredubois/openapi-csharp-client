@@ -3,7 +3,7 @@
     /// <summary>
     /// Wrapper object to serialize and call GetCart action
     /// </summary>
-    public class GetCartWrapper
+    public class GetCartRequestWrapper
     {
         /// <summary>
         /// Private cdiscount open api key

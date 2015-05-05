@@ -34,7 +34,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
 
             var response = _openApiProxyClient.GetCart(new GetCartRequest
                 {
-                    CartGuid = preparedCart.CartGuid
+                    CartGUID = preparedCart.CartGuid
                 });
 
             Assert.IsNotNull(response);
