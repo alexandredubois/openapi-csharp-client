@@ -35,9 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Config\ProxyClientConfig.cs" />
+    <Compile Include="Contract\Data\CartItem.cs" />
+    <Compile Include="Contract\Request\GetCartRequest.cs" />
+    <Compile Include="Contract\Request\Wrapper\GetCartWrapper.cs" />
     <Compile Include="Contract\Request\Wrapper\PushToCartRequestWrapper.cs" />
     <Compile Include="Contract\Request\PushToCartRequest.cs" />
     <Compile Include="Contract\Response\BaseResponseMessage.cs" />
+    <Compile Include="Contract\Response\GetCartResponse.cs" />
     <Compile Include="Contract\Response\PushToCartResponse.cs" />
     <Compile Include="OpenApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,6 +54,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
