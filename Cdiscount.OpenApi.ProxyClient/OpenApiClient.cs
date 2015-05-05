@@ -7,6 +7,7 @@ using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.Request;
 using Cdiscount.OpenApi.ProxyClient.Contract.Response;
 using Newtonsoft.Json;
+using Cdiscount.OpenApi.ProxyClient.Contract.Request.Wrapper;
 
 namespace Cdiscount.OpenApi.ProxyClient
 {
@@ -73,7 +74,34 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
-            throw new NotImplementedException();
+            GetCartResponse result = null;
+
+            string baseAddress = "https://api.cdiscount.com/";
+            var requestMessage = new GetCartRequestWrapper
+            {
+                ApiKey = _configuration.ApiKey,
+                CartRequest = request
+            };
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(baseAddress);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var jsonObject = JsonConvert.SerializeObject(requestMessage);
+                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/GetCart", content).Result;
+
+                response.EnsureSuccessStatusCode();
+                Task<string> responseBody = response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<GetCartResponse>(responseBody.Result);
+                result.OperationSuccess = true;
+            }
+
+            return result;
         }
     }
 }

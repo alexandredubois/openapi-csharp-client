@@ -37,7 +37,7 @@
     <Compile Include="Config\ProxyClientConfig.cs" />
     <Compile Include="Contract\Data\CartItem.cs" />
     <Compile Include="Contract\Request\GetCartRequest.cs" />
-    <Compile Include="Contract\Request\Wrapper\GetCartWrapper.cs" />
+    <Compile Include="Contract\Request\Wrapper\GetCartRequestWrapper.cs" />
     <Compile Include="Contract\Request\Wrapper\PushToCartRequestWrapper.cs" />
     <Compile Include="Contract\Request\PushToCartRequest.cs" />
     <Compile Include="Contract\Response\BaseResponseMessage.cs" />

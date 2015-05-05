@@ -10,6 +10,6 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
         /// <summary>
         /// Cart identifier
         /// </summary>
-        public Guid CartGuid { get; set; }
+        public Guid CartGUID { get; set; }
     }
 }
