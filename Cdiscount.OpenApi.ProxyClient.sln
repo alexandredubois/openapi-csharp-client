@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdiscount.OpenApi.ProxyClient", "Cdiscount.OpenApi.ProxyClient\Cdiscount.OpenApi.ProxyClient.csproj", "{FEF481B8-5714-4747-890F-295440DA12EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cdiscount.OpenApi.ProxyClient.Tests", "Cdiscount.OpenApi.ProxyClient.Tests\Cdiscount.OpenApi.ProxyClient.Tests.csproj", "{8DAB7701-DC6D-46F0-A9C9-2DA731D8660E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEF481B8-5714-4747-890F-295440DA12EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEF481B8-5714-4747-890F-295440DA12EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEF481B8-5714-4747-890F-295440DA12EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEF481B8-5714-4747-890F-295440DA12EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DAB7701-DC6D-46F0-A9C9-2DA731D8660E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DAB7701-DC6D-46F0-A9C9-2DA731D8660E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DAB7701-DC6D-46F0-A9C9-2DA731D8660E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DAB7701-DC6D-46F0-A9C9-2DA731D8660E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
