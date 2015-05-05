@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
 {
@@ -11,6 +7,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
     /// </summary>
     public class GetCartRequest
     {
+        /// <summary>
+        /// Cart identifier
+        /// </summary>
         public Guid CartGuid { get; set; }
     }
 }
