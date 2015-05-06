@@ -1,0 +1,1 @@
+To prevent api key leak, you can add your apikey to your machine.config located here : %windir%\Microsoft.NET\Framework\[version]\config\machine.config
