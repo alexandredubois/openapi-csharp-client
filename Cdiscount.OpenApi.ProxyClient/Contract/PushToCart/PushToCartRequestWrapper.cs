@@ -1,4 +1,4 @@
-﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
+﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.PushToCart
 {
     /// <summary>
     /// Base request message

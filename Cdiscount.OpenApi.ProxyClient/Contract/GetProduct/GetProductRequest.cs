@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Cdiscount.OpenApi.ProxyClient.Contract.Data;
 using Newtonsoft.Json;
 
-namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
+namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
 {
     /// <summary>
     /// Request object to retrieve product(s)

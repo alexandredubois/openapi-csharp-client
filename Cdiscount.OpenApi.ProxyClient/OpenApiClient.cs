@@ -4,10 +4,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Cdiscount.OpenApi.ProxyClient.Config;
-using Cdiscount.OpenApi.ProxyClient.Contract.Request;
-using Cdiscount.OpenApi.ProxyClient.Contract.Response;
+using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
+using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Newtonsoft.Json;
-using Cdiscount.OpenApi.ProxyClient.Contract.Request.Wrapper;
 
 namespace Cdiscount.OpenApi.ProxyClient
 {

@@ -1,6 +1,7 @@
 ﻿using System;
+using Cdiscount.OpenApi.ProxyClient.Contract.Common;
 
-namespace Cdiscount.OpenApi.ProxyClient.Contract.Response
+namespace Cdiscount.OpenApi.ProxyClient.Contract.PushToCart
 {
     /// <summary>
     /// PushToCart response message

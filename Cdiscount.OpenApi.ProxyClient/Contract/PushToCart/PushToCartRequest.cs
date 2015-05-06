@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
+namespace Cdiscount.OpenApi.ProxyClient.Contract.PushToCart
 {
     /// <summary>
     /// Request message to add something to cart

@@ -35,18 +35,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Config\ProxyClientConfig.cs" />
-    <Compile Include="Contract\Data\CartItem.cs" />
-    <Compile Include="Contract\Data\CartItemList.cs" />
-    <Compile Include="Contract\Data\GetProductRequestScope.cs" />
-    <Compile Include="Contract\Request\GetCartRequest.cs" />
-    <Compile Include="Contract\Request\GetProductRequest.cs" />
-    <Compile Include="Contract\Request\Wrapper\GetCartRequestWrapper.cs" />
-    <Compile Include="Contract\Request\Wrapper\GetProductRequestWrapper.cs" />
-    <Compile Include="Contract\Request\Wrapper\PushToCartRequestWrapper.cs" />
-    <Compile Include="Contract\Request\PushToCartRequest.cs" />
-    <Compile Include="Contract\Response\BaseResponseMessage.cs" />
-    <Compile Include="Contract\Response\GetCartResponse.cs" />
-    <Compile Include="Contract\Response\PushToCartResponse.cs" />
+    <Compile Include="Contract\Common\BaseResponseMessage.cs" />
+    <Compile Include="Contract\GetCart\CartItem.cs" />
+    <Compile Include="Contract\GetCart\CartItemList.cs" />
+    <Compile Include="Contract\GetCart\GetCartRequest.cs" />
+    <Compile Include="Contract\GetCart\GetCartRequestWrapper.cs" />
+    <Compile Include="Contract\GetProduct\GetProductRequest.cs" />
+    <Compile Include="Contract\GetProduct\GetProductRequestScope.cs" />
+    <Compile Include="Contract\GetProduct\GetProductRequestWrapper.cs" />
+    <Compile Include="Contract\GetProduct\GetProductResponse.cs" />
+    <Compile Include="Contract\GetProduct\Product.cs" />
+    <Compile Include="Contract\GetProduct\ProductImage.cs" />
+    <Compile Include="Contract\GetProduct\ProductOffer.cs" />
+    <Compile Include="Contract\GetProduct\ProductPriceDetail.cs" />
+    <Compile Include="Contract\GetProduct\ProductPriceDiscount.cs" />
+    <Compile Include="Contract\GetProduct\ProductPriceSaving.cs" />
+    <Compile Include="Contract\GetProduct\ProductSeller.cs" />
+    <Compile Include="Contract\GetProduct\ProductShipping.cs" />
+    <Compile Include="Contract\GetProduct\ProductSize.cs" />
+    <Compile Include="Contract\PushToCart\PushToCartRequest.cs" />
+    <Compile Include="Contract\PushToCart\PushToCartRequestWrapper.cs" />
+    <Compile Include="Contract\PushToCart\PushToCartResponse.cs" />
+    <Compile Include="Contract\GetCart\GetCartResponse.cs" />
     <Compile Include="OpenApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

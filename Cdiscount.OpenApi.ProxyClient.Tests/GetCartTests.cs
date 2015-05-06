@@ -1,8 +1,9 @@
 ﻿using Cdiscount.OpenApi.ProxyClient.Config;
-using Cdiscount.OpenApi.ProxyClient.Contract.Request;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Configuration;
+using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
+using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
