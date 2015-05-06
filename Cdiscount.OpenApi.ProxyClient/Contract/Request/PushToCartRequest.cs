@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
 {
@@ -11,6 +12,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Request
         /// Cart identifier
         /// </summary>
         /// <remarks>Used to update en existing cart.</remarks>
+        [JsonProperty(PropertyName = "CartGUID")]
         public Guid? CartGuid { get; set; }
 
         /// <summary>

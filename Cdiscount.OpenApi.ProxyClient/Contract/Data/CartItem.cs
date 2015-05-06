@@ -33,11 +33,11 @@
         /// <summary>
         /// Seller identifier
         /// </summary>
-        public int SellerId { get; set; }
+        public int? SellerId { get; set; }
 
         /// <summary>
         /// Size identifier
         /// </summary>
-        public int SizeId { get; set; }
+        public int? SizeId { get; set; }
     }
 }

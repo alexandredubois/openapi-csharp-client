@@ -27,7 +27,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Response
         /// <summary>
         /// Cart content items
         /// </summary>
-        public List<CartItem> Items { get; set; }
+        public CartItemList Items { get; set; }
 
         /// <summary>
         /// Product quantity
