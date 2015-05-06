@@ -1,4 +1,4 @@
-﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Response
+﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Common
 {
     /// <summary>
     /// Base response message for open api results

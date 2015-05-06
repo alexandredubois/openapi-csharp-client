@@ -1,4 +1,4 @@
-﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Data
+﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
 {
     /// <summary>
     /// Additional product information to retrieve

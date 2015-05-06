@@ -1,4 +1,4 @@
-﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Request.Wrapper
+﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
 {
     /// <summary>
     /// Wrapper object to serialize for calling GetProduct action
