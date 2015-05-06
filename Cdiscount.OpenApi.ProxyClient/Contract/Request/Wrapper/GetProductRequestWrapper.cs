@@ -1,9 +1,9 @@
 ﻿namespace Cdiscount.OpenApi.ProxyClient.Contract.Request.Wrapper
 {
     /// <summary>
-    /// Wrapper object to serialize for calling GetCart action
+    /// Wrapper object to serialize for calling GetProduct action
     /// </summary>
-    public class GetCartRequestWrapper
+    public class GetProductRequestWrapper
     {
         /// <summary>
         /// Private cdiscount open api key
@@ -11,8 +11,8 @@
         public string ApiKey { get; set; }
 
         /// <summary>
-        /// Cart request information
+        /// Product request informations
         /// </summary>
-        public GetCartRequest CartRequest { get; set; }
+        public GetProductRequest ProductRequest { get; set; }
     }
 }
