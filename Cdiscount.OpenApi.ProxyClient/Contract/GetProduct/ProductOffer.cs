@@ -10,7 +10,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
 
         public bool IsAvailable { get; set; }
 
-        public bool ProductUrl { get; set; }
+        public string ProductUrl { get; set; }
 
         public decimal SalePrice { get; set; }
 

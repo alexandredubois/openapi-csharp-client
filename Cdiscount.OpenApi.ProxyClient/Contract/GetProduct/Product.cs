@@ -19,7 +19,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
 
         public string MainImageUrl { get; set; }
 
-        public int Rating { get; set; }
+        public decimal? Rating { get; set; }
 
         public int OffersCount { get; set; }
 

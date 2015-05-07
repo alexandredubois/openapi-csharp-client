@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
+using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Newtonsoft.Json;
 
@@ -73,7 +74,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
-            GetCartResponse result = null;
+            GetCartResponse result;
 
             string baseAddress = "https://api.cdiscount.com/";
             var requestMessage = new GetCartRequestWrapper
@@ -100,6 +101,37 @@ namespace Cdiscount.OpenApi.ProxyClient
                 result.OperationSuccess = true;
             }
 
+            return result;
+        }
+
+        public GetProductResponse GetProduct(GetProductRequest request)
+        {
+            GetProductResponse result;
+
+            string baseAddress = "https://api.cdiscount.com/";
+            var requestMessage = new GetProductRequestWrapper()
+            {
+                ApiKey = _configuration.ApiKey,
+                ProductRequest = request
+            };
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(baseAddress);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var jsonObject = JsonConvert.SerializeObject(requestMessage);
+                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/GetProduct", content).Result;
+
+                response.EnsureSuccessStatusCode();
+                Task<string> responseBody = response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<GetProductResponse>(responseBody.Result);
+                result.OperationSuccess = true;
+            }
             return result;
         }
     }
