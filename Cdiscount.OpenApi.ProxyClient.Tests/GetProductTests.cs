@@ -1,16 +1,14 @@
-﻿using Cdiscount.OpenApi.ProxyClient.Config;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
+using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
-using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
     [TestClass]
-    public class GetProductRequestTests
+    public class GetProductTests
     {
         private OpenApiClient _openApiProxyClient;
 
@@ -28,7 +26,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         {
             var response = _openApiProxyClient.GetProduct(new GetProductRequest
             {
-                ProductIdList = new List<string> { "fincpangfirrnoir" },
+                ProductIdList = new List<string> {"fincpangfirrnoir"},
                 Scope = new GetProductRequestScope
                 {
                     Ean = true
@@ -39,7 +37,10 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
             Assert.IsTrue(response.OperationSuccess);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.AreEqual(1, response.Products.Count);
-        }
 
+            var product = response.Products[0];
+            Assert.AreEqual("fincpangfirrnoir".ToUpper(), product.Id);
+            Assert.IsFalse(string.IsNullOrEmpty(product.Ean));
+        }
     }
 }
