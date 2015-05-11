@@ -3,7 +3,6 @@ using System.Configuration;
 using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
