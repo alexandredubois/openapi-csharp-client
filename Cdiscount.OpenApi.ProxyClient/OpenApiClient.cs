@@ -7,6 +7,7 @@ using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
+using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Newtonsoft.Json;
 
 namespace Cdiscount.OpenApi.ProxyClient
@@ -130,6 +131,37 @@ namespace Cdiscount.OpenApi.ProxyClient
                 response.EnsureSuccessStatusCode();
                 Task<string> responseBody = response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<GetProductResponse>(responseBody.Result);
+                result.OperationSuccess = true;
+            }
+            return result;
+        }
+
+        public SearchResponse Search(SearchRequest request)
+        {
+            SearchResponse result;
+
+            string baseAddress = "https://api.cdiscount.com/";
+            var requestMessage = new SearchRequestWrapper()
+            {
+                ApiKey = _configuration.ApiKey,
+                SearchRequest = request
+            };
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(baseAddress);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var jsonObject = JsonConvert.SerializeObject(requestMessage);
+                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/Search", content).Result;
+
+                response.EnsureSuccessStatusCode();
+                Task<string> responseBody = response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<SearchResponse>(responseBody.Result);
                 result.OperationSuccess = true;
             }
             return result;
