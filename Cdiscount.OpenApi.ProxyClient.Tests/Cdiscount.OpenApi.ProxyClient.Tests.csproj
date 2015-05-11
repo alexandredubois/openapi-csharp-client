@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SearchTests.cs" />
     <Compile Include="GetProductTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GetCartTests.cs" />

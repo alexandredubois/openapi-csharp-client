@@ -57,6 +57,9 @@
     <Compile Include="Contract\PushToCart\PushToCartRequestWrapper.cs" />
     <Compile Include="Contract\PushToCart\PushToCartResponse.cs" />
     <Compile Include="Contract\GetCart\GetCartResponse.cs" />
+    <Compile Include="Contract\Search\SearchRequest.cs" />
+    <Compile Include="Contract\Search\SearchRequestWrapper.cs" />
+    <Compile Include="Contract\Search\SearchResponse.cs" />
     <Compile Include="Helper\SingleValueArrayConverter.cs" />
     <Compile Include="OpenApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
