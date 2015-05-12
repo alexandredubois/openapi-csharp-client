@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Cdiscount.OpenApi.ProxyClient.Config;
+using Cdiscount.OpenApi.ProxyClient.Contract.Common;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
@@ -32,40 +33,43 @@ namespace Cdiscount.OpenApi.ProxyClient
         }
 
         /// <summary>
+        /// Generic method used to send a request to the Api
+        /// </summary>
+        /// <param name="requestUri">Request Uri</param>
+        /// <param name="requestMessage">Request Message</param>
+        /// <returns>Request response message</returns>
+        private static T Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage
+        {
+            T result;
+            var jsonObject = JsonConvert.SerializeObject(requestMessage);
+
+            using (var httpClient = new BaseHttpClient())
+            using (var content = new BaseHttpContent(jsonObject))
+            using (HttpResponseMessage response = httpClient.PostAsync(requestUri, content).Result)
+            {
+                response.EnsureSuccessStatusCode();
+                Task<string> responseBody = response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<T>(responseBody.Result);
+                result.OperationSuccess = true;
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Method used to add an item to a (new) cart
         /// </summary>
         /// <param name="request">Request parameters</param>
         /// <returns>Cart reference</returns>
         public PushToCartResponse PushToCart(PushToCartRequest request)
         {
-            string baseAddress = "https://api.cdiscount.com/";
             var requestMessage = new PushToCartRequestWrapper
             {
                 ApiKey = _configuration.ApiKey,
                 PushToCartRequest = request
             };
 
-            PushToCartResponse result;
-
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri(baseAddress);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var jsonObject = JsonConvert.SerializeObject(requestMessage);
-                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/PushToCart", content).Result;
-
-                response.EnsureSuccessStatusCode();
-                Task<string> responseBody = response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<PushToCartResponse>(responseBody.Result);
-                result.OperationSuccess = true;
-            }
-
-            return result;
+            return Post<PushToCartResponse>("OpenApi/json/PushToCart", requestMessage);
         }
 
         /// <summary>
@@ -75,96 +79,35 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
-            GetCartResponse result;
-
-            string baseAddress = "https://api.cdiscount.com/";
             var requestMessage = new GetCartRequestWrapper
             {
                 ApiKey = _configuration.ApiKey,
                 CartRequest = request
             };
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri(baseAddress);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var jsonObject = JsonConvert.SerializeObject(requestMessage);
-                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/GetCart", content).Result;
-
-                response.EnsureSuccessStatusCode();
-                Task<string> responseBody = response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<GetCartResponse>(responseBody.Result);
-                result.OperationSuccess = true;
-            }
-
-            return result;
+            return Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage);
         }
 
         public GetProductResponse GetProduct(GetProductRequest request)
         {
-            GetProductResponse result;
-
-            string baseAddress = "https://api.cdiscount.com/";
             var requestMessage = new GetProductRequestWrapper()
             {
                 ApiKey = _configuration.ApiKey,
                 ProductRequest = request
             };
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri(baseAddress);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var jsonObject = JsonConvert.SerializeObject(requestMessage);
-                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/GetProduct", content).Result;
-
-                response.EnsureSuccessStatusCode();
-                Task<string> responseBody = response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<GetProductResponse>(responseBody.Result);
-                result.OperationSuccess = true;
-            }
-            return result;
+            return Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage);
         }
 
         public SearchResponse Search(SearchRequest request)
         {
-            SearchResponse result;
-
-            string baseAddress = "https://api.cdiscount.com/";
             var requestMessage = new SearchRequestWrapper()
             {
                 ApiKey = _configuration.ApiKey,
                 SearchRequest = request
             };
 
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri(baseAddress);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var jsonObject = JsonConvert.SerializeObject(requestMessage);
-                HttpContent content = new StringContent(jsonObject, Encoding.UTF8);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-                HttpResponseMessage response = httpClient.PostAsync("OpenApi/json/Search", content).Result;
-
-                response.EnsureSuccessStatusCode();
-                Task<string> responseBody = response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<SearchResponse>(responseBody.Result);
-                result.OperationSuccess = true;
-            }
-            return result;
+            return Post<SearchResponse>("OpenApi/json/Search", requestMessage);
         }
     }
 }

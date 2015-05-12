@@ -35,6 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Config\ProxyClientConfig.cs" />
+    <Compile Include="Contract\Common\BaseHttpClient.cs" />
+    <Compile Include="Contract\Common\BaseHttpContent.cs" />
     <Compile Include="Contract\Common\BaseResponseMessage.cs" />
     <Compile Include="Contract\GetCart\CartItem.cs" />
     <Compile Include="Contract\GetCart\CartItemList.cs" />
