@@ -47,6 +47,7 @@
     <Compile Include="Contract\GetProduct\GetProductRequestWrapper.cs" />
     <Compile Include="Contract\GetProduct\GetProductResponse.cs" />
     <Compile Include="Contract\GetProduct\Product.cs" />
+    <Compile Include="Contract\GetProduct\ProductCondition.cs" />
     <Compile Include="Contract\GetProduct\ProductImage.cs" />
     <Compile Include="Contract\GetProduct\ProductOffer.cs" />
     <Compile Include="Contract\GetProduct\ProductPriceDetail.cs" />
