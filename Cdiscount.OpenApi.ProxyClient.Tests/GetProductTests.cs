@@ -41,5 +41,23 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
             Assert.AreEqual("fincpangfirrnoir".ToUpper(), product.Id);
             Assert.IsFalse(string.IsNullOrEmpty(product.Ean));
         }
+
+        [TestMethod]
+        public void GetProduct_2ProductsByProductId_OperationSuccess()
+        {
+            var response = _openApiProxyClient.GetProduct(new GetProductRequest
+            {
+                ProductIdList = new List<string> { "fincpangfirrnoir", "tu03" },
+                Scope = new GetProductRequestScope
+                {
+                    Ean = true
+                }
+            });
+
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.OperationSuccess);
+            Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
+            Assert.AreEqual(2, response.Products.Count);
+        }
     }
 }
