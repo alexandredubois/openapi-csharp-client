@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Configuration;
 using Cdiscount.OpenApi.ProxyClient.Config;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Configuration;
-using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
-using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
@@ -69,6 +65,5 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.IsTrue(response.ItemCount > 0);
         }
-
     }
 }
