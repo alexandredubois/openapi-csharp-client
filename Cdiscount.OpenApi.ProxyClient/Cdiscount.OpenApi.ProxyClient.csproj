@@ -59,6 +59,12 @@
     <Compile Include="Contract\PushToCart\PushToCartRequestWrapper.cs" />
     <Compile Include="Contract\PushToCart\PushToCartResponse.cs" />
     <Compile Include="Contract\GetCart\GetCartResponse.cs" />
+    <Compile Include="Contract\Search\SearchRequestFilters.cs" />
+    <Compile Include="Contract\Search\SearchRequestFiltersNavigation.cs" />
+    <Compile Include="Contract\Search\SearchRequestFiltersPrice.cs" />
+    <Compile Include="Contract\Search\SearchRequestFiltersCondition.cs" />
+    <Compile Include="Contract\Search\SearchRequestSortBy.cs" />
+    <Compile Include="Contract\Search\SearchRequestPagination.cs" />
     <Compile Include="Contract\Search\SearchRequest.cs" />
     <Compile Include="Contract\Search\SearchRequestWrapper.cs" />
     <Compile Include="Contract\Search\SearchResponse.cs" />

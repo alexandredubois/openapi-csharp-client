@@ -101,6 +101,11 @@ namespace Cdiscount.OpenApi.ProxyClient
 
         public SearchResponse Search(SearchRequest request)
         {
+            if (request != null && request.Pagination == null)
+            {
+                request.Pagination = new SearchRequestPagination();
+            }
+
             var requestMessage = new SearchRequestWrapper()
             {
                 ApiKey = _configuration.ApiKey,

@@ -36,5 +36,13 @@ namespace Cdiscount.OpenApi.ProxyClient.Helper
         {
             return true;
         }
+
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
+            }
+        }
     }
 }
