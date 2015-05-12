@@ -15,7 +15,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
         /// <summary>
         /// Product condition (New or Used)
         /// </summary>
-        public string Condition { get; set; }
+        public ProductCondition Condition { get; set; }
 
         /// <summary>
         /// True if the product is available
