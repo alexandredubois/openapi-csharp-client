@@ -1,21 +1,21 @@
 # Cdiscount Open API Client
 ---------------------------------
 
-* [Presentation](#presentation)
-* [Features](#features)
-* [Getting started](#getting-started)
-* [Contributors](#contributors)
-* [How to help](#how-to-help)
-* [Licence](#licence)
+* [Presentation](#Presentation)
+* [Features](#Features)
+* [Getting started](#Getting started)
+* [Contributors](#Contributors)
+* [How to help](#How to help)
+* [Licence](#Licence)
 
-## Presentation<a name="presentation"></a>
+## Presentation
 ---------------
 
 This open source project is here to help people wanting to use the Cdiscount Open API in a .NET powered solution.
 
 This project was designed as a thin C# wrapper on top of the Cdiscount Open API. Packaged as a portable class library, you can use it on different .NET environments (Windows Phone 8+ app, Windows Store App...).
 
-## Features<a name="features"></a>
+## Features
 ------------
 
 The library features reflect those offered by the standard Cdiscount open API. eg : 
@@ -26,7 +26,7 @@ The library features reflect those offered by the standard Cdiscount open API. e
 
 For a full list of features, please visit the Cdiscount Open API documentation.
 
-## Getting started<a name="getting-started"></a>
+## Getting started
 ------------------
 ### Get your own API key
 Want to have some fun with the Cdiscount Open API ? Good news, you're on the right spot ! Before doing magic, the first thing to to is to sign up on the Cdiscount open API portal and create your first app to obtain an API key.
@@ -86,13 +86,13 @@ var response = openApiClient.Search(new SearchRequest
             });
 ```
 
-## Contributors<a name="contributors"></a>
+## Contributors
 * [Alexandre Dubois](http://www.alexandredubois.com)
 * [Adrien Havas](https://github.com/Drenskin)
 
-##How to help ?<a name="how-to-help"></a>
+## How to help ?
 
 Every action is welcome ! You can submit pull request, open issue, write documentation or translate it... Do not hesitate to propose your help !
 
-##Licence<a name="licence"></a>
+## Licence
 This project is distributed under the MIT licence provided in the dedicated LICENCE.txt file.
