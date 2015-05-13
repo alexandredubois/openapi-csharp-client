@@ -24,12 +24,12 @@ The library features reflect those offered by the standard Cdiscount open API. e
 * retrieve product information
 * manage a cdiscount shopping cart
 
-For a full list of features, please visit the Cdiscount Open API documentation.
+For a full list of features, please visit the [Cdiscount Open API documentation](https://dev.cdiscount.com/docs/apiReference).
 
 ## Getting started
 ------------------
 ### Get your own API key
-Want to have some fun with the Cdiscount Open API ? Good news, you're on the right spot ! Before doing magic, the first thing to to is to sign up on the Cdiscount open API portal and create your first app to obtain an API key.
+Want to have some fun with the Cdiscount Open API ? Good news, you're on the right spot ! Before doing magic, the first thing to to is to [sign up on the Cdiscount Open API portal](https://dev.cdiscount.com/register) and create your first app to obtain an API key.
 
 ### Add the Cdiscount Open API Client to your project
 
