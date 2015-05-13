@@ -47,7 +47,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         {
             var response = _openApiProxyClient.GetProduct(new GetProductRequest
             {
-                ProductIdList = new List<string> { "fincpangfirrnoir", "tu03" },
+                ProductIdList = new List<string> { "fincpangfirrnoir", "TU03" },
                 Scope = new GetProductRequestScope
                 {
                     Ean = true

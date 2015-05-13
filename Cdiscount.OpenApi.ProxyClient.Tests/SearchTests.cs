@@ -55,7 +55,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
                     },
                     Navigation = SearchRequestFiltersNavigation.Toys,
                     IncludeMarketPlace = true,
-                    //Brands = new List<string> { "LEGO", "RUBIES" },
+                    Brands = "LEGO",
                     Condition = SearchRequestFiltersCondition.All
                 }
             });

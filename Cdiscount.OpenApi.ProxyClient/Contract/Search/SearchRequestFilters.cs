@@ -14,8 +14,8 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Search
 
         public bool IncludeMarketPlace { get; set; }
 
-        //[JsonConverter(typeof(ToLowerCaseStringEnumerableConverter))]
-        //public List<string> Brands { get; set; }
+        [JsonConverter(typeof(ToLowerCaseStringEnumerableConverter))]
+        public string Brands { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public SearchRequestFiltersCondition Condition { get; set; }
