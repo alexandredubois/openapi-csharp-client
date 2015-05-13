@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Cdiscount.OpenApi.ProxyClient.Contract.GetProduct
+namespace Cdiscount.OpenApi.ProxyClient.Contract.Common
 {
     /// <summary>
     /// Product details
