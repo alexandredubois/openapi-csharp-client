@@ -1,12 +1,12 @@
 # Cdiscount Open API Client
 ---------------------------------
 
-* [Presentation](#Presentation)
-* [Features](#Features)
-* [Getting started](#Getting started)
-* [Contributors](#Contributors)
-* [How to help](#How to help)
-* [Licence](#Licence)
+* [Presentation](#presentation)
+* [Features](#features)
+* [Getting started](#getting-started)
+* [Contributors](#contributors)
+* [How to help](#how-to-help-)
+* [Licence](#licence)
 
 ## Presentation
 ---------------
@@ -36,7 +36,7 @@ Want to have some fun with the Cdiscount Open API ? Good news, you're on the rig
 There are 2 ways to get the job done : declaring a project reference or adding a nuget package. The NuGet package is the recommended and easiest way to go.
 To install Cdiscount Open API Client, run the following command in the Package Manager Console
 ```
-PM> Install-Package Cdiscount.OpenApi.Client
+PM> Install-Package Cdiscount.OpenApi.ProxyClient
 ```
 
 ### Play with your new toy
