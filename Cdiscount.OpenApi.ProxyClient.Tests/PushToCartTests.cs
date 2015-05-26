@@ -1,7 +1,7 @@
 ﻿using Cdiscount.OpenApi.ProxyClient.Config;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Configuration;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
+using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
@@ -15,7 +15,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         {
             _openApiProxyClient = new OpenApiClient(new ProxyClientConfig
             {
-                ApiKey = ConfigurationManager.AppSettings["ApiKey"]
+                ApiKey = TestsHelper.GetCdiscountOpenApiKey()
             });
         }
 
