@@ -1,21 +1,12 @@
 # Cdiscount Open API Client
 ---------------------------------
 
-<<<<<<< HEAD
-* [Presentation](#Presentation)
-* [Features](#Features)
-* [Getting started](#Getting started)
-* [Contributors](#Contributors)
-* [How to help](#How to help)
-* [Licence](#Licence)
-=======
 * [Presentation](#presentation)
 * [Features](#features)
 * [Getting started](#getting-started)
 * [Contributors](#contributors)
 * [How to help](#how-to-help-)
 * [Licence](#licence)
->>>>>>> 2a026b3d65e672650ca3030f28ed455de936cd47
 
 ## Presentation
 ---------------
