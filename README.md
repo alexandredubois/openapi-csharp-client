@@ -1,5 +1,6 @@
 # Cdiscount Open API Client
 ---------------------------------
+[![Build status](https://ci.appveyor.com/api/projects/status/ctphw4he9rjw4t54?svg=true)](https://ci.appveyor.com/project/alexandredubois/openapi-csharp-client)
 
 * [Presentation](#presentation)
 * [Features](#features)
