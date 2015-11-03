@@ -38,6 +38,7 @@
     <Compile Include="Contract\Common\BaseHttpClient.cs" />
     <Compile Include="Contract\Common\BaseHttpContent.cs" />
     <Compile Include="Contract\Common\BaseResponseMessage.cs" />
+    <Compile Include="Contract\Exception\MissingApiKeyException.cs" />
     <Compile Include="Contract\GetCart\CartItem.cs" />
     <Compile Include="Contract\GetCart\CartItemList.cs" />
     <Compile Include="Contract\GetCart\GetCartRequest.cs" />

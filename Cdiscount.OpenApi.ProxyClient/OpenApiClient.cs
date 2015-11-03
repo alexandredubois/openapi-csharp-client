@@ -10,6 +10,7 @@ using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Newtonsoft.Json;
+using Cdiscount.OpenApi.ProxyClient.Contract.Exception;
 
 namespace Cdiscount.OpenApi.ProxyClient
 {
@@ -63,6 +64,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart reference</returns>
         public PushToCartResponse PushToCart(PushToCartRequest request)
         {
+            CheckConfiguration();
             var requestMessage = new PushToCartRequestWrapper
             {
                 ApiKey = _configuration.ApiKey,
@@ -79,6 +81,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
+            CheckConfiguration();
             var requestMessage = new GetCartRequestWrapper
             {
                 ApiKey = _configuration.ApiKey,
@@ -90,6 +93,7 @@ namespace Cdiscount.OpenApi.ProxyClient
 
         public GetProductResponse GetProduct(GetProductRequest request)
         {
+            CheckConfiguration();
             var requestMessage = new GetProductRequestWrapper()
             {
                 ApiKey = _configuration.ApiKey,
@@ -101,6 +105,7 @@ namespace Cdiscount.OpenApi.ProxyClient
 
         public SearchResponse Search(SearchRequest request)
         {
+            CheckConfiguration();
             if (request != null && request.Pagination == null)
             {
                 request.Pagination = new SearchRequestPagination();
@@ -114,5 +119,14 @@ namespace Cdiscount.OpenApi.ProxyClient
 
             return Post<SearchResponse>("OpenApi/json/Search", requestMessage);
         }
+
+        private void CheckConfiguration()
+        {
+            if (_configuration == null || string.IsNullOrWhiteSpace(_configuration.ApiKey))
+            {
+                throw new MissingApiKeyException("The Cdiscount OpenApiKey is missing. Call aborted.");
+            }
+        }
+
     }
 }
