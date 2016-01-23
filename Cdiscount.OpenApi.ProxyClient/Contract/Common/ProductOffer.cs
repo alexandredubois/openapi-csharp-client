@@ -45,7 +45,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.Common
         /// <summary>
         /// Shipping details about this offer
         /// </summary>
-        public List<ProductShipping> ProductShippings { get; set; }
+        public List<ProductShipping> Shippings { get; set; }
 
         /// <summary>
         /// Product sizes available
