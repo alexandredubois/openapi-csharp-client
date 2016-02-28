@@ -105,6 +105,11 @@ namespace Cdiscount.OpenApi.ProxyClient
 
         public SearchResponse Search(SearchRequest request)
         {
+            return SearchAsync(request).Result;
+        }
+
+        public async Task<SearchResponse> SearchAsync(SearchRequest request)
+        {
             CheckConfiguration();
             if (request != null && request.Pagination == null)
             {
@@ -117,7 +122,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 SearchRequest = request
             };
 
-            return Post<SearchResponse>("OpenApi/json/Search", requestMessage).Result;
+            return await Post<SearchResponse>("OpenApi/json/Search", requestMessage);
         }
 
         private void CheckConfiguration()
