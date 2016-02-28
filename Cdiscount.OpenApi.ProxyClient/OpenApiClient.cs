@@ -64,6 +64,16 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart reference</returns>
         public PushToCartResponse PushToCart(PushToCartRequest request)
         {
+            return PushToCartAsync(request).Result;
+        }
+
+        /// <summary>
+        /// Method used to add an item to a (new) cart (async method)
+        /// </summary>
+        /// <param name="request">Request parameters</param>
+        /// <returns>Cart reference</returns>
+        public async Task<PushToCartResponse> PushToCartAsync(PushToCartRequest request)
+        {
             CheckConfiguration();
             var requestMessage = new PushToCartRequestWrapper
             {
@@ -71,7 +81,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 PushToCartRequest = request
             };
 
-            return Post<PushToCartResponse>("OpenApi/json/PushToCart", requestMessage).Result;
+            return await Post<PushToCartResponse>("OpenApi/json/PushToCart", requestMessage);
         }
 
         /// <summary>
