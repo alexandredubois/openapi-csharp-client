@@ -93,6 +93,11 @@ namespace Cdiscount.OpenApi.ProxyClient
 
         public GetProductResponse GetProduct(GetProductRequest request)
         {
+            return GetProductAsync(request).Result;
+        }
+
+        public async Task<GetProductResponse> GetProductAsync(GetProductRequest request)
+        {
             CheckConfiguration();
             var requestMessage = new GetProductRequestWrapper()
             {
@@ -100,7 +105,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 ProductRequest = request
             };
 
-            return Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage).Result;
+            return await Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage);
         }
 
         public SearchResponse Search(SearchRequest request)
