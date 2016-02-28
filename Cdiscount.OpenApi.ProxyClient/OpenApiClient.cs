@@ -61,6 +61,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart reference</returns>
         public PushToCartResponse PushToCart(PushToCartRequest request)
         {
+            CheckConfiguration();
             return PushToCartAsync(request).Result;
         }
 
@@ -88,6 +89,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
+            CheckConfiguration();
             return GetCartAsync(request).Result;
         }
 
@@ -115,6 +117,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Product(s) information</returns>
         public GetProductResponse GetProduct(GetProductRequest request)
         {
+            CheckConfiguration();
             return GetProductAsync(request).Result;
         }
 
@@ -142,6 +145,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Search result</returns>
         public SearchResponse Search(SearchRequest request)
         {
+            CheckConfiguration();
             return SearchAsync(request).Result;
         }
 
