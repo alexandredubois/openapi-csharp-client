@@ -81,6 +81,16 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart content</returns>
         public GetCartResponse GetCart(GetCartRequest request)
         {
+            return GetCartAsync(request).Result;
+        }
+
+        /// <summary>
+        /// Retrieve a cart with all its details (async method)
+        /// </summary>
+        /// <param name="request">Cart to retrieve</param>
+        /// <returns>Cart content</returns>
+        public async Task<GetCartResponse> GetCartAsync(GetCartRequest request)
+        {
             CheckConfiguration();
             var requestMessage = new GetCartRequestWrapper
             {
@@ -88,7 +98,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 CartRequest = request
             };
 
-            return Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage).Result;
+            return await Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage);
         }
 
         public GetProductResponse GetProduct(GetProductRequest request)
