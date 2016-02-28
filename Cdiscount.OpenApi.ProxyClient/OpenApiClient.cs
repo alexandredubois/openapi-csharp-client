@@ -39,15 +39,15 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <param name="requestUri">Request Uri</param>
         /// <param name="requestMessage">Request Message</param>
         /// <returns>Request response message</returns>
-        private static T Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage
+        private static async Task<T> Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage
         {
             T result;
             var jsonObject = JsonConvert.SerializeObject(requestMessage);
 
             using (var httpClient = new BaseHttpClient())
             using (var content = new BaseHttpContent(jsonObject))
-            using (HttpResponseMessage response = httpClient.PostAsync(requestUri, content).Result)
             {
+                HttpResponseMessage response = await httpClient.PostAsync(requestUri, content);
                 response.EnsureSuccessStatusCode();
                 Task<string> responseBody = response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<T>(responseBody.Result);
@@ -71,7 +71,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 PushToCartRequest = request
             };
 
-            return Post<PushToCartResponse>("OpenApi/json/PushToCart", requestMessage);
+            return Post<PushToCartResponse>("OpenApi/json/PushToCart", requestMessage).Result;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 CartRequest = request
             };
 
-            return Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage);
+            return Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage).Result;
         }
 
         public GetProductResponse GetProduct(GetProductRequest request)
@@ -100,7 +100,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 ProductRequest = request
             };
 
-            return Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage);
+            return Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage).Result;
         }
 
         public SearchResponse Search(SearchRequest request)
@@ -117,7 +117,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                 SearchRequest = request
             };
 
-            return Post<SearchResponse>("OpenApi/json/Search", requestMessage);
+            return Post<SearchResponse>("OpenApi/json/Search", requestMessage).Result;
         }
 
         private void CheckConfiguration()
