@@ -1,16 +1,13 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Cdiscount.OpenApi.ProxyClient.Config;
+﻿using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.Common;
+using Cdiscount.OpenApi.ProxyClient.Contract.Exception;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Newtonsoft.Json;
-using Cdiscount.OpenApi.ProxyClient.Contract.Exception;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Cdiscount.OpenApi.ProxyClient
 {
@@ -111,11 +108,21 @@ namespace Cdiscount.OpenApi.ProxyClient
             return await Post<GetCartResponse>("OpenApi/json/GetCart", requestMessage);
         }
 
+        /// <summary>
+        /// Retrieve a product with all its details
+        /// </summary>
+        /// <param name="request">Product(s) to retrieve</param>
+        /// <returns>Product(s) information</returns>
         public GetProductResponse GetProduct(GetProductRequest request)
         {
             return GetProductAsync(request).Result;
         }
 
+        /// <summary>
+        /// Retrieve a product with all its details (async method)
+        /// </summary>
+        /// <param name="request">Product(s) to retrieve</param>
+        /// <returns>Product(s) information</returns>
         public async Task<GetProductResponse> GetProductAsync(GetProductRequest request)
         {
             CheckConfiguration();
@@ -128,11 +135,21 @@ namespace Cdiscount.OpenApi.ProxyClient
             return await Post<GetProductResponse>("OpenApi/json/GetProduct", requestMessage);
         }
 
+        /// <summary>
+        /// Retrieve product(s) list based on your query
+        /// </summary>
+        /// <param name="request">Search query parameters</param>
+        /// <returns>Search result</returns>
         public SearchResponse Search(SearchRequest request)
         {
             return SearchAsync(request).Result;
         }
 
+        /// <summary>
+        /// Retrieve product(s) list based on your query (async method)
+        /// </summary>
+        /// <param name="request">Search query parameters</param>
+        /// <returns>Search result</returns>
         public async Task<SearchResponse> SearchAsync(SearchRequest request)
         {
             CheckConfiguration();
