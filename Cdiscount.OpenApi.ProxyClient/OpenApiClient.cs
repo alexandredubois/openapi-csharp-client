@@ -36,7 +36,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <param name="requestUri">Request Uri</param>
         /// <param name="requestMessage">Request Message</param>
         /// <returns>Request response message</returns>
-        private static async Task<T> Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage
+        private static async Task<T> Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage, new()
         {
             T result;
             var jsonObject = JsonConvert.SerializeObject(requestMessage);
@@ -45,10 +45,19 @@ namespace Cdiscount.OpenApi.ProxyClient
             using (var content = new BaseHttpContent(jsonObject))
             {
                 HttpResponseMessage response = await httpClient.PostAsync(requestUri, content);
-                response.EnsureSuccessStatusCode();
-                Task<string> responseBody = response.Content.ReadAsStringAsync();
-                result = JsonConvert.DeserializeObject<T>(responseBody.Result);
-                result.OperationSuccess = true;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Task<string> responseBody = response.Content.ReadAsStringAsync();
+                    result = JsonConvert.DeserializeObject<T>(responseBody.Result);
+                    result.OperationSuccess = true;
+                }
+                else
+                {
+                    result = new T();
+                    result.ErrorMessage = string.Format("StatusCode: {0}, ReasonPhrase: '{1}'", (int)response.StatusCode, response.ReasonPhrase);
+                    result.OperationSuccess = false;
+                }
             }
 
             return result;
