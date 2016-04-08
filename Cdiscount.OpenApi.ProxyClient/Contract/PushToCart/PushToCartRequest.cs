@@ -33,7 +33,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Contract.PushToCart
         /// <summary>
         /// Seller identifier
         /// </summary>
-        public int SellerId { get; set; }
+        public long SellerId { get; set; }
 
         /// <summary>
         /// Size identifier

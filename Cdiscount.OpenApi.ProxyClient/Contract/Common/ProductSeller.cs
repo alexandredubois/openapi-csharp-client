@@ -8,7 +8,7 @@
         /// <summary>
         /// Seller identifier
         /// </summary>
-        public string Id { get; set; }
+        public long Id { get; set; }
         
         /// <summary>
         /// Product name
