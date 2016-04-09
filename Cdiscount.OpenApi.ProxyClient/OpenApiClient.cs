@@ -6,6 +6,7 @@ using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -72,6 +73,117 @@ namespace Cdiscount.OpenApi.ProxyClient
         {
             CheckConfiguration();
             return PushToCartAsync(request).Result;
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product)
+        {
+            return PushToCartAsync(cartGuid, product, 1);
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <param name="quantity">Quantity of the product to add</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, int quantity)
+        {
+            return PushToCartAsync(cartGuid, product, product != null ? product.BestOffer : null, null, quantity);
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <param name="offer">Product specific offer to add to the cart</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, ProductOffer offer)
+        {
+            return PushToCartAsync(cartGuid, product, offer, 1);
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <param name="offer">Product specific offer to add to the cart</param>
+        /// <param name="quantity">Quantity of the product to add</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, ProductOffer offer, int quantity)
+        {
+            return PushToCartAsync(cartGuid, product, offer, null, quantity);
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <param name="offer">Product specific offer to add to the cart</param>
+        /// <param name="size">Specific size of the product to use (if applicable)</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, ProductOffer offer, ProductSize size)
+        {
+            return PushToCartAsync(cartGuid, product, offer, size, 1);
+        }
+
+        /// <summary>
+        /// Helper method to add a product to a cart
+        /// </summary>
+        /// <param name="cartGuid">Guid of the cart if existing. Null if creating a new cart</param>
+        /// <param name="product">Product to add to the cart</param>
+        /// <param name="offer">Product specific offer to add to the cart</param>
+        /// <param name="size">Specific size of the product to use (if applicable)</param>
+        /// <param name="quantity">Quantity of the product to add</param>
+        /// <returns>Cart reference</returns>
+        public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, ProductOffer offer, ProductSize size, int quantity)
+        {
+            if (product  == null)
+            {
+                throw new ArgumentNullException(nameof(product), "The product must not be null");
+            }
+
+            if (quantity < 1 || quantity > 12)
+            {
+                throw new ArgumentOutOfRangeException(nameof(quantity), "The quantity must be an integer between 1 and 12");
+            }
+
+            PushToCartRequest pushToCartRequest = new PushToCartRequest()
+            {
+                ProductId = product.Id,
+                Quantity = quantity
+            };
+
+            if (cartGuid != Guid.Empty)
+            {
+                pushToCartRequest.CartGuid = cartGuid;
+            }
+
+            if (offer != null)
+            {
+                pushToCartRequest.OfferId = offer.Id;
+
+                if (offer.Seller != null)
+                {
+                    pushToCartRequest.SellerId = offer.Seller.Id;
+                }
+            }
+
+            if (size != null)
+            {
+                pushToCartRequest.SizeId = size.Id;
+            }
+
+            return PushToCartAsync(pushToCartRequest);
         }
 
         /// <summary>
