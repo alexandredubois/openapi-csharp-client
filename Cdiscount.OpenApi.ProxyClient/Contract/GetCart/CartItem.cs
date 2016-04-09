@@ -38,6 +38,6 @@
         /// <summary>
         /// Size identifier
         /// </summary>
-        public int? SizeId { get; set; }
+        public string SizeId { get; set; }
     }
 }
