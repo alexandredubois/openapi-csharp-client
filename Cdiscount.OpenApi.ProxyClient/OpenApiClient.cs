@@ -37,28 +37,36 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <param name="requestUri">Request Uri</param>
         /// <param name="requestMessage">Request Message</param>
         /// <returns>Request response message</returns>
-        private static async Task<T> Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage, new()
+        private async Task<T> Post<T>(string requestUri, object requestMessage) where T : BaseResponseMessage, new()
         {
             T result;
-            var jsonObject = JsonConvert.SerializeObject(requestMessage);
 
-            using (var httpClient = new BaseHttpClient())
-            using (var content = new BaseHttpContent(jsonObject))
+            try
             {
-                HttpResponseMessage response = await httpClient.PostAsync(requestUri, content);
+                var jsonObject = JsonConvert.SerializeObject(requestMessage);
 
-                if (response.IsSuccessStatusCode)
+                using (var httpClient = new BaseHttpClient() { Timeout = _configuration.Timeout })
+                using (var content = new BaseHttpContent(jsonObject))
                 {
-                    Task<string> responseBody = response.Content.ReadAsStringAsync();
-                    result = JsonConvert.DeserializeObject<T>(responseBody.Result);
-                    result.OperationSuccess = true;
+                    HttpResponseMessage response = await httpClient.PostAsync(requestUri, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        result = JsonConvert.DeserializeObject<T>(responseBody);
+                        result.OperationSuccess = true;
+                    }
+                    else
+                    {
+                        result = new T();
+                        result.ErrorMessage = string.Format("StatusCode: {0}, ReasonPhrase: '{1}'", (int)response.StatusCode, response.ReasonPhrase);
+                    }
                 }
-                else
-                {
-                    result = new T();
-                    result.ErrorMessage = string.Format("StatusCode: {0}, ReasonPhrase: '{1}'", (int)response.StatusCode, response.ReasonPhrase);
-                    result.OperationSuccess = false;
-                }
+            }
+            catch (Exception ex)
+            {
+                result = new T();
+                result.ErrorMessage = ex.Message;
             }
 
             return result;
@@ -147,7 +155,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// <returns>Cart reference</returns>
         public Task<PushToCartResponse> PushToCartAsync(Guid? cartGuid, Product product, ProductOffer offer, ProductSize size, int quantity)
         {
-            if (product  == null)
+            if (product == null)
             {
                 throw new ArgumentNullException(nameof(product), "The product must not be null");
             }
@@ -299,6 +307,5 @@ namespace Cdiscount.OpenApi.ProxyClient
                 throw new MissingApiKeyException("The Cdiscount OpenApiKey is missing. Call aborted.");
             }
         }
-
     }
 }
