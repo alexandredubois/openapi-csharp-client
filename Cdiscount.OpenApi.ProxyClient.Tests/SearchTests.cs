@@ -1,4 +1,5 @@
-﻿using Cdiscount.OpenApi.ProxyClient.Config;
+﻿using System.Threading.Tasks;
+using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -20,9 +21,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         }
 
         [TestMethod]
-        public void Search_BasicCall_OperationSuccess()
+        public async Task Search_BasicCall_OperationSuccess()
         {
-            var response = _openApiProxyClient.Search(new SearchRequest
+            var response = await _openApiProxyClient.SearchAsync(new SearchRequest
             {
                 Keyword = "superman",
                 SortBy = SearchRequestSortBy.Relevance
@@ -35,9 +36,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         }
 
         [TestMethod]
-        public void Search_ComplexeCall_OperationSuccess()
+        public async Task Search_ComplexeCall_OperationSuccess()
         {
-            var response = _openApiProxyClient.Search(new SearchRequest
+            var response = await _openApiProxyClient.SearchAsync(new SearchRequest
             {
                 Keyword = "superman",
                 SortBy = SearchRequestSortBy.Relevance,

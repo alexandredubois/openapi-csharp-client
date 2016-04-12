@@ -77,6 +77,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// </summary>
         /// <param name="request">Request parameters</param>
         /// <returns>Cart reference</returns>
+        [Obsolete("Use PushToCartAsync")]
         public PushToCartResponse PushToCart(PushToCartRequest request)
         {
             CheckConfiguration();
@@ -216,6 +217,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// </summary>
         /// <param name="request">Cart to retrieve</param>
         /// <returns>Cart content</returns>
+        [Obsolete("Use GetCartAsync")]
         public GetCartResponse GetCart(GetCartRequest request)
         {
             CheckConfiguration();
@@ -244,6 +246,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// </summary>
         /// <param name="request">Product(s) to retrieve</param>
         /// <returns>Product(s) information</returns>
+        [Obsolete("Use GetProductAsync")]
         public GetProductResponse GetProduct(GetProductRequest request)
         {
             CheckConfiguration();
@@ -272,6 +275,7 @@ namespace Cdiscount.OpenApi.ProxyClient
         /// </summary>
         /// <param name="request">Search query parameters</param>
         /// <returns>Search result</returns>
+        [Obsolete("Use SearchAsync")]
         public SearchResponse Search(SearchRequest request)
         {
             CheckConfiguration();

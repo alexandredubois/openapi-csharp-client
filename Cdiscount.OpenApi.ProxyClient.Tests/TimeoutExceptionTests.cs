@@ -1,16 +1,9 @@
-﻿using Cdiscount.OpenApi.ProxyClient.Config;
-using Cdiscount.OpenApi.ProxyClient.Contract.Exception;
-using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
-using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
-using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
+﻿using System;
+using System.Threading.Tasks;
+using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {

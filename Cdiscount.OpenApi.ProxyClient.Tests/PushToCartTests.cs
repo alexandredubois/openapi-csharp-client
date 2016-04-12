@@ -1,11 +1,11 @@
-﻿using Cdiscount.OpenApi.ProxyClient.Config;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
-using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
-using System.Collections.Generic;
-using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cdiscount.OpenApi.ProxyClient.Config;
+using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
+using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
+using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
@@ -24,9 +24,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         }
 
         [TestMethod]
-        public void PushToCart_AddItemCreatingNewCart_OperationSuccess()
+        public async Task PushToCart_AddItemCreatingNewCart_OperationSuccess()
         {
-            var response = _openApiProxyClient.PushToCart(new PushToCartRequest
+            var response = await _openApiProxyClient.PushToCartAsync(new PushToCartRequest
             {
                 ProductId = "fincpangfirrnoir",
                 OfferId = "fincpangfirrnoir",
@@ -44,9 +44,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         }
 
         [TestMethod]
-        public void PushToCart_AddItemToExistingCart_OperationSuccess()
+        public async Task PushToCart_AddItemToExistingCart_OperationSuccess()
         {
-            var cart = _openApiProxyClient.PushToCart(new PushToCartRequest
+            var cart = await _openApiProxyClient.PushToCartAsync(new PushToCartRequest
             {
                 ProductId = "fincpangfirrnoir",
                 OfferId = "fincpangfirrnoir",
@@ -55,7 +55,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
                 SizeId = null
             });
 
-            var response = _openApiProxyClient.PushToCart(new PushToCartRequest
+            var response = await _openApiProxyClient.PushToCartAsync(new PushToCartRequest
             {
                 CartGuid = cart.CartGuid,
                 ProductId = "has321011",
@@ -77,7 +77,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         [TestMethod]
         public async Task PushToCart_AddItemMkp_OperationSuccess()
         {
-            var productResponse = _openApiProxyClient.GetProduct(new GetProductRequest
+            var productResponse = await _openApiProxyClient.GetProductAsync(new GetProductRequest
             {
                 ProductIdList = new List<string> { "nikd52001855vr2" },
                 Scope = new GetProductRequestScope
@@ -106,7 +106,7 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         [TestMethod]
         public async Task PushToCart_AddItemMkpWithVariant_OperationSuccess()
         {
-            var productResponse = _openApiProxyClient.GetProduct(new GetProductRequest
+            var productResponse = await _openApiProxyClient.GetProductAsync(new GetProductRequest
             {
                 ProductIdList = new List<string> { "mp02814077" },
                 Scope = new GetProductRequestScope

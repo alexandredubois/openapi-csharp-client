@@ -1,16 +1,13 @@
-﻿using Cdiscount.OpenApi.ProxyClient.Config;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cdiscount.OpenApi.ProxyClient.Config;
 using Cdiscount.OpenApi.ProxyClient.Contract.Exception;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
-using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cdiscount.OpenApi.ProxyClient.Tests
 {
@@ -30,9 +27,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
 
         [TestMethod]
         [ExpectedException(typeof(MissingApiKeyException))]
-        public void GetProduct_ApiKeyMissing_MissingApiKeyExceptionRaised()
+        public async Task GetProduct_ApiKeyMissing_MissingApiKeyExceptionRaised()
         {
-            var response = _openApiProxyClient.GetProduct(new GetProductRequest
+            var response = await _openApiProxyClient.GetProductAsync(new GetProductRequest
             {
                 ProductIdList = new List<string> { "fincpangfirrnoir" },
                 Scope = new GetProductRequestScope
@@ -44,9 +41,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
 
         [TestMethod]
         [ExpectedException(typeof(MissingApiKeyException))]
-        public void GetCart_ApiKeyMissing_MissingApiKeyExceptionRaised()
+        public async Task GetCart_ApiKeyMissing_MissingApiKeyExceptionRaised()
         {
-            var response = _openApiProxyClient.GetCart(new GetCartRequest
+            var response = await _openApiProxyClient.GetCartAsync(new GetCartRequest
             {
                 CartGuid = Guid.NewGuid()
             });
@@ -54,9 +51,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
 
         [TestMethod]
         [ExpectedException(typeof(MissingApiKeyException))]
-        public void PushToCart_ApiKeyMissing_MissingApiKeyExceptionRaised()
+        public async Task PushToCart_ApiKeyMissing_MissingApiKeyExceptionRaised()
         {
-            var response = _openApiProxyClient.PushToCart(new PushToCartRequest
+            var response = await _openApiProxyClient.PushToCartAsync(new PushToCartRequest
             {
                 ProductId = "fincpangfirrnoir",
                 OfferId = "fincpangfirrnoir",
@@ -68,9 +65,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
 
         [TestMethod]
         [ExpectedException(typeof(MissingApiKeyException))]
-        public void Search_ApiKeyMissing_MissingApiKeyExceptionRaised()
+        public async Task Search_ApiKeyMissing_MissingApiKeyExceptionRaised()
         {
-            var response = _openApiProxyClient.Search(new SearchRequest
+            var response = await _openApiProxyClient.SearchAsync(new SearchRequest
             {
                 Keyword = "superman",
                 SortBy = SearchRequestSortBy.Relevance
