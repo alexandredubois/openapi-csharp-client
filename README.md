@@ -51,7 +51,7 @@ OpenApiClient openApiClient = new OpenApiClient(new ProxyClientConfig { ApiKey =
 
 **Get the 'fincpangfirrnoir' product**
 ```csharp
-var response = openApiClient.GetProduct(new GetProductRequest
+var response = await openApiClient.GetProductAsync(new GetProductRequest
             {
                 ProductIdList = new List<string> {"fincpangfirrnoir"},
                 Scope = new GetProductRequestScope()
@@ -60,7 +60,7 @@ var response = openApiClient.GetProduct(new GetProductRequest
 
 **Add the 'fincpangfirrnoir' product to a new shopping cart**
 ```csharp
-var response = openApiClient.PushToCart(new PushToCartRequest
+var response = await openApiClient.PushToCartAsync(new PushToCartRequest
             {
                 ProductId = "fincpangfirrnoir",
                 OfferId = "fincpangfirrnoir",
@@ -72,7 +72,7 @@ var response = openApiClient.PushToCart(new PushToCartRequest
 
 **Get shopping cart details**
 ```csharp
-var response = openApiClient.GetCart(new GetCartRequest
+var response = await openApiClient.GetCartAsync(new GetCartRequest
             {
                 CartGuid = "YOUR-CART-GUID-HERE"
             });
@@ -80,7 +80,7 @@ var response = openApiClient.GetCart(new GetCartRequest
 
 **Search for products related to 'superman'**
 ```csharp
-var response = openApiClient.Search(new SearchRequest
+var response = await openApiClient.SearchAsync(new SearchRequest
             {
                 Keyword = "superman",
                 SortBy = SearchRequestSortBy.Relevance

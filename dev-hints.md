@@ -3,7 +3,7 @@ To prevent api key leak, you can add your apikey to your machine.config located 
 
 # TODO ideas (just in case ;)
 
-* propose async methods
+* ~~propose async methods
 * better error handling
 * complete documentation for each method
 * more integration tests
