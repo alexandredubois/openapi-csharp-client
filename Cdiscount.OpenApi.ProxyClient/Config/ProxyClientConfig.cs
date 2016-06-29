@@ -23,6 +23,11 @@ namespace Cdiscount.OpenApi.ProxyClient.Config
         public string ApiKey { get; set; }
 
         /// <summary>
+        /// Enable debug mode
+        /// </summary>
+        public bool DebugModeEnabled { get; set; }
+
+        /// <summary>
         /// Default Timeout
         /// </summary>
         /// <remarks> 

@@ -2,6 +2,7 @@
 using Cdiscount.OpenApi.ProxyClient.Contract.GetProduct;
 using Cdiscount.OpenApi.ProxyClient.Tests.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,7 +18,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         {
             _openApiProxyClient = new OpenApiClient(new ProxyClientConfig
             {
-                ApiKey = TestsHelper.GetCdiscountOpenApiKey()
+                ApiKey = TestsHelper.GetCdiscountOpenApiKey(),
+                DebugModeEnabled = true,
+                Timeout = new TimeSpan(0, 0, 5)
             });
         }
 

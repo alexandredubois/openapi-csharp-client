@@ -21,7 +21,9 @@ namespace Cdiscount.OpenApi.ProxyClient.Tests
         {
             _openApiProxyClient = new OpenApiClient(new ProxyClientConfig
             {
-                ApiKey = null
+                ApiKey = null,
+                DebugModeEnabled = true,
+                Timeout = new TimeSpan(0, 0, 5)
             });
         }
 

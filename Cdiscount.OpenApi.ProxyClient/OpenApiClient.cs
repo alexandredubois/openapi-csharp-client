@@ -7,6 +7,7 @@ using Cdiscount.OpenApi.ProxyClient.Contract.PushToCart;
 using Cdiscount.OpenApi.ProxyClient.Contract.Search;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -45,6 +46,8 @@ namespace Cdiscount.OpenApi.ProxyClient
             {
                 var jsonObject = JsonConvert.SerializeObject(requestMessage);
 
+                if(_configuration.DebugModeEnabled) Debug.WriteLine(jsonObject);
+
                 using (var httpClient = new BaseHttpClient() { Timeout = _configuration.Timeout })
                 using (var content = new BaseHttpContent(jsonObject))
                 {
@@ -53,6 +56,7 @@ namespace Cdiscount.OpenApi.ProxyClient
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
+                        if (_configuration.DebugModeEnabled) Debug.WriteLine(responseBody);
                         result = JsonConvert.DeserializeObject<T>(responseBody);
                         result.OperationSuccess = true;
                     }
